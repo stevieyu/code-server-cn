@@ -9,7 +9,7 @@ RUN sudo apt update && \
     sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
 
 RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans@1.99.0 && \
-    code-server --install-extension RooVeterinaryInc.roo-cline
+    code-server --install-extension kilocode.kilo-code
 
 COPY . /home/coder/.local/share/code-server/
 
