@@ -69,12 +69,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=tag
-            type=sha,enable=false
             type=raw,value=latest
-          flavor: |
-            latest=false
-            prefix=
-            suffix=
         env:
           DOCKER_METADATA_PR_HEAD_SHA: false
 
