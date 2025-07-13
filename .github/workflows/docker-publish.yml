@@ -70,8 +70,10 @@ jobs:
             type=ref,event=branch
             type=ref,event=tag
             type=raw,value=latest
-        env:
-          DOCKER_METADATA_SHORT_SHA_LENGTH: 7
+          flavor: |
+            latest=false
+            prefix=
+            suffix=
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
