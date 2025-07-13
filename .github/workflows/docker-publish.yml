@@ -69,11 +69,14 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=tag
+            type=sha,enable=false
             type=raw,value=latest
           flavor: |
             latest=false
             prefix=
             suffix=
+        env:
+          DOCKER_METADATA_PR_HEAD_SHA: false
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
