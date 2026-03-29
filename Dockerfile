@@ -15,17 +15,20 @@ RUN apt update && \
 
 USER abc
 
-RUN echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/brew.git"' >> ~/.brewrc && \
-    echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/homebrew-core.git"' >> ~/.brewrc && \
-    echo 'export HOMEBREW_API_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles/api"' >> ~/.brewrc && \
-    echo 'export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles"' >> ~/.brewrc && \
-    echo >> ~/.bashrc && echo '. ~/.brewrc' >> ~/.bashrc && \
-    curl -fsSL https://zerobrew.rs/install | bash
+# RUN echo "export \$PATH=$HOME/.local/bin:\$PATH" >> ~/.bashrc
+
+# RUN echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/brew.git"' >> ~/.brewrc && \
+#     echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/homebrew-core.git"' >> ~/.brewrc && \
+#     echo 'export HOMEBREW_API_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles/api"' >> ~/.brewrc && \
+#     echo 'export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles"' >> ~/.brewrc && \
+#     echo >> ~/.bashrc && echo '. ~/.brewrc' >> ~/.bashrc && \
+#     curl -fsSL https://zerobrew.rs/install | bash
 #     NONINTERACTIVE=1 bash -c "$(curl -fsSL https://fastly.jsdelivr.net/gh/Homebrew/install/install.sh)" && \
 #     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.brewrc
 
-RUN curl https://mise.run | sh && \
-    echo >> ~/.bashrc && echo 'eval "$(mise activate bash --shims)"' >> ~/.bashrc
+# RUN curl https://mise.run | sh && \
+#     echo >> ~/.bashrc && echo '. ~/.brewrc' >> ~/.bashrc && \
+#     echo >> ~/.bashrc && echo 'eval "$(mise activate bash --shims)"' >> ~/.bashrc
 
 # RUN sudo install -dm 755 /etc/apt/keyrings && \
 #     wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null && \
