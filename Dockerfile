@@ -15,15 +15,6 @@ RUN apt update && \
 
 USER abc
 
-RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
-    code-server --install-extension kilocode.kilo-code
-
-COPY . /home/coder/.local/share/code-server/
-
-RUN sudo chown -R $USER:$USER ~/.local/share/code-server/User && \
-    . ~/.local/share/code-server/languagepacks.sh && \
-    echo >> ~/.bashrc && echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc 
-
 RUN echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/brew.git"' >> ~/.brewrc && \
     echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/homebrew-core.git"' >> ~/.brewrc && \
     echo 'export HOMEBREW_API_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles/api"' >> ~/.brewrc && \
@@ -40,6 +31,16 @@ RUN curl https://mise.run | sh && \
 #     wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null && \
 #     echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list && \
 #     sudo apt update && sudo apt install -y mise
+
+
+# RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
+#     code-server --install-extension kilocode.kilo-code
+
+# COPY . /home/coder/.local/share/code-server/
+
+# RUN sudo chown -R $USER:$USER ~/.local/share/code-server/User && \
+#     . ~/.local/share/code-server/languagepacks.sh && \
+#     echo >> ~/.bashrc && echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc 
 
 WORKDIR /WORKSPACE
 
