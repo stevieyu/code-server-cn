@@ -3,8 +3,8 @@
 # source: https://www.anye.xyz/archives/A2n9F5qa
 
 # 定义路径
-EXTENSIONS_DIR="$HOME/.local/share/code-server/extensions"
-OUTPUT_DIR="$HOME/.local/share/code-server"
+EXTENSIONS_DIR="$HOME/extensions"
+OUTPUT_DIR="$HOME/data"
 LANGUAGE_PACK_PREFIX="ms-ceintl.vscode-language-pack-"
 
 # 定义输出文件
