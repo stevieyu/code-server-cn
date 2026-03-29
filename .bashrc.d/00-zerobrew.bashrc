@@ -4,3 +4,5 @@ export HOMEBREW_API_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles"
 
 eval "$(zb completion bash)"
+
+# 安装后二进制路径，例如：$HOME/.local/share/zerobrew/prefix/Cellar/node/25.8.2/bin
