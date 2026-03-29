@@ -39,7 +39,7 @@ USER abc
 # RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
 #     code-server --install-extension kilocode.kilo-code
 
-# COPY . /home/coder/.local/share/code-server/
+COPY code-server/* /config/.local/share/code-server/
 
 # RUN sudo chown -R $USER:$USER ~/.local/share/code-server/User && \
 #     . ~/.local/share/code-server/languagepacks.sh && \
