@@ -1,6 +1,6 @@
-FROM codercom/code-server
+FROM linuxserver/code-server
 
-# cource: https://github.com/coder/code-server/blob/main/ci/release-image/Dockerfile
+# cource: https://github.com/linuxserver/docker-code-server/blob/master/Dockerfile
 
 USER root
 
@@ -8,12 +8,12 @@ RUN find /etc -regex '.*\(repositories\|sources.list\(.d\/.*\)?\)$' | xargs sudo
 
 RUN apt update && \
     apt install -y build-essential jq && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    apt autoremove -y && apt autoclean && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 ######################################################################################
 
-USER coder
+USER abc
 
 RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
     code-server --install-extension kilocode.kilo-code
