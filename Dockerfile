@@ -33,7 +33,7 @@ RUN export PATH=/app/code-server/bin:$PATH && \
 
 ########################################### zerobrew ###########################################
 
-RUN curl -fsSL https://zerobrew.rs/install | EUID=1 bash
+RUN curl -fsSL https://zerobrew.rs/install | sed 's/github\.com/g.stevie.top\/github.com/g' | EUID=1 bash
 
 ############################################ mise ##############################################
 

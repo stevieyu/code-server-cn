@@ -1,3 +1,12 @@
+# 批量添加路径到 PATH 变量
+# 防止重复添加已存在的路径
+PATHS_TO_ADD=(
+  "$HOME/.local/bin"
+)
+for path in "${PATHS_TO_ADD[@]}"; do
+  [[ ":$PATH:" != *":$path:"* ]] && export PATH="$path:$PATH"
+done
+
 
 # 遍历 .bashrc.d 目录下的配置文件并加载
 # 文件命名格式：[0-9][0-9]-*.bashrc（数字前缀用于控制加载顺序）
@@ -10,12 +19,3 @@ done
 unset i
 
 
-# 批量添加路径到 PATH 变量
-# 防止重复添加已存在的路径
-PATHS_TO_ADD=(
-  "$HOME/.local/bin"
-  "$HOME/.cargo/bin"
-)
-for path in "${PATHS_TO_ADD[@]}"; do
-  [[ ":$PATH:" != *":$path:"* ]] && export PATH="$path:$PATH"
-done
