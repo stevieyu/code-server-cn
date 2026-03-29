@@ -24,11 +24,12 @@ RUN sudo chown -R $USER:$USER ~/.local/share/code-server/User && \
     . ~/.local/share/code-server/languagepacks.sh && \
     echo >> ~/.bashrc && echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc 
 
-# RUN echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/brew.git"' >> ~/.brewrc && \
-#     echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/homebrew-core.git"' >> ~/.brewrc && \
-#     echo 'export HOMEBREW_API_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles/api"' >> ~/.brewrc && \
-#     echo 'export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles"' >> ~/.brewrc && \
-#     echo >> ~/.bashrc && echo '. ~/.brewrc' >> ~/.bashrc && \
+RUN echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/brew.git"' >> ~/.brewrc && \
+    echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/homebrew-core.git"' >> ~/.brewrc && \
+    echo 'export HOMEBREW_API_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles/api"' >> ~/.brewrc && \
+    echo 'export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles"' >> ~/.brewrc && \
+    echo >> ~/.bashrc && echo '. ~/.brewrc' >> ~/.bashrc && \
+    curl -fsSL https://zerobrew.rs/install | bash
 #     NONINTERACTIVE=1 bash -c "$(curl -fsSL https://fastly.jsdelivr.net/gh/Homebrew/install/install.sh)" && \
 #     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.brewrc
 
