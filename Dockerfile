@@ -18,6 +18,7 @@ RUN mv /tmp/.bashrc.d $HOME/.bashrc.d && \
     cp /etc/skel/.bashrc $HOME/.bashrc && \
     echo '. ~/.bashrc.d/.bashrc' >> $HOME/.bashrc
     
+RUN curl https://chsrc.run/posix | bash
 
 ##################################### code-server #####################################
 
