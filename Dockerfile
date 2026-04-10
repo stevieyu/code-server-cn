@@ -41,7 +41,9 @@ RUN curl -fsSL https://zerobrew.rs/install | sed 's/github\.com/g.stevie.top\/gi
 RUN curl https://mise.run | sh && \
     echo 'eval "$(mise activate bash --shims)"' >> ~/.bashrc.d/00-mise.bashrc
 
-# TODO: add sudoers
-# RUN echo 'abc ALL=(ALL) ALL' >> /etc/sudoers
+RUN echo 'abc:abc' | chpasswd && \
+    echo 'root:root' | chpasswd && \
+    echo 'abc ALL=(ALL) ALL' >> /etc/sudoers
 
-# EXPOSE 8443
+
+EXPOSE 8443
