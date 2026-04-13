@@ -5,7 +5,7 @@ export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bott
 
 eval "$(zb completion bash)"
 
-#export PATH=$HOME/.local/share/zerobrew/prefix/opt/rustup:$PATH
+#export PATH=$HOME/.local/share/zerobrew/prefix/opt/rustup/bin:$PATH
 #export PATH=$HOME/.local/share/zerobrew/prefix/bin:$PATH
 #export PATH=$HOME/.local/share/zerobrew/prefix/Cellar/node/25.8.2/bin:$PATH
 
