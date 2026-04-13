@@ -2,6 +2,7 @@
 # 防止重复添加已存在的路径
 PATHS_TO_ADD=(
   "$HOME/.local/bin"
+  "$HOME/.local/share/zerobrew/prefix/bin"
 )
 for path in "${PATHS_TO_ADD[@]}"; do
   [[ ":$PATH:" != *":$path:"* ]] && export PATH="$path:$PATH"
