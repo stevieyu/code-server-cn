@@ -20,6 +20,12 @@ RUN mv /tmp/.bashrc.d $HOME/.bashrc.d && \
     
 RUN curl https://chsrc.run/posix | bash
 
+##################################### starship #####################################
+
+RUN curl -sS https://fastly.jsdelivr.net/gh/starship/starship@master/install/install.sh | sh -s -- -y && \
+    echo ""$schema" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
+
 ##################################### code-server #####################################
 
 COPY code-server /tmp/code-server
