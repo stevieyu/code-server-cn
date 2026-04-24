@@ -11,13 +11,14 @@ RUN apt update && \
 
 ##################################### bashrc ##########################################
 
-
 COPY .bashrc.d /tmp/.bashrc.d
 
 RUN mv /tmp/.bashrc.d $HOME/.bashrc.d && \
     cp /etc/skel/.bashrc $HOME/.bashrc && \
     echo '. ~/.bashrc.d/.bashrc' >> $HOME/.bashrc
-    
+
+SHELL ["/bin/bash", "-c"]
+
 RUN curl https://chsrc.run/posix | bash
 
 ##################################### code-server #####################################
@@ -41,15 +42,20 @@ RUN curl -fsSL https://zerobrew.rs/install | sed 's/github\.com/g.stevie.top\/gi
 RUN curl https://mise.run | sh && \
     echo 'eval "$(mise activate bash --shims)"' >> ~/.bashrc.d/00-mise.bashrc
 
-RUN echo 'abc:abc' | chpasswd && \
-    echo 'root:root' | chpasswd && \
-    echo 'abc ALL=(ALL) ALL' >> /etc/sudoers
 
 ##################################### starship #####################################
 
 RUN zb install starship && \
     mkdir -p ~/.config && echo "\"\$schema\" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
+
+
+##################################### user & pasword #####################################
+
+RUN echo 'abc:abc' | chpasswd && \
+    echo 'root:root' | chpasswd && \
+    echo 'abc ALL=(ALL) ALL' >> /etc/sudoers
+
 
 
 EXPOSE 8443
