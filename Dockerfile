@@ -17,8 +17,6 @@ RUN mv /tmp/.bashrc.d $HOME/.bashrc.d && \
     cp /etc/skel/.bashrc $HOME/.bashrc && \
     echo '. ~/.bashrc.d/.bashrc' >> $HOME/.bashrc
 
-SHELL ["/bin/bash", "-c"]
-
 RUN curl https://chsrc.run/posix | bash
 
 ##################################### code-server #####################################
@@ -45,7 +43,7 @@ RUN curl https://mise.run | sh && \
 
 ##################################### starship #####################################
 
-RUN zb install starship && \
+RUN bash -c 'zb install starship' && \
     mkdir -p ~/.config && echo "\"\$schema\" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
 
