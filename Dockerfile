@@ -48,7 +48,7 @@ RUN echo 'abc:abc' | chpasswd && \
 ##################################### starship #####################################
 
 RUN zb install starship && \
-    mkdir -p ~/.config && echo "'$schema' = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
+    mkdir -p ~/.config && echo "\"\$schema\" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
 
 
