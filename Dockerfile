@@ -43,7 +43,7 @@ RUN curl https://mise.run | sh && \
 
 ##################################### starship #####################################
 
-RUN bash -c 'zb install starship' && \
+RUN export PATH=~/.local/bin:$PATH && zb install starship && \
     mkdir -p ~/.config && echo "\"\$schema\" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
 
