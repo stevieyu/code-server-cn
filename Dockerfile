@@ -1,39 +1,25 @@
-FROM linuxserver/code-server
+FROM ghcr.io/coder/code-server
 
-# cource: https://github.com/linuxserver/docker-code-server/blob/master/Dockerfile
+USER root
 
-RUN find /etc -regex '.*\(repositories\|sources.list\(.d\/.*\)?\)$' | xargs sudo sed -i -E 's/(archive|security).ubuntu.com|(deb).debian.org|dl-cdn.alpinelinux.org/mirrors.aliyun.com/g'
+RUN find /etc -regex '.*\(repositories\|sources.list\(.d\/.*\)?\)$' | xargs sed -i -E 's/(archive|security).ubuntu.com|(deb).debian.org|dl-cdn.alpinelinux.org/mirrors.aliyun.com/g'
 
 RUN apt update && \
-    apt install -y build-essential jq && \
+    apt install -y --no-install-recommends jq libatomic1 && \
     apt autoremove -y && apt autoclean && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
+USER coder
 ##################################### bashrc ##########################################
 
-COPY .bashrc.d /tmp/.bashrc.d
+COPY --chown=coder:coder .bashrc.d /home/coder/.bashrc.d
 
-RUN mv /tmp/.bashrc.d $HOME/.bashrc.d && \
-    cp /etc/skel/.bashrc $HOME/.bashrc && \
+RUN cp /etc/skel/.bashrc $HOME/.bashrc && \
     echo '. ~/.bashrc.d/.bashrc' >> $HOME/.bashrc
-
-RUN curl https://chsrc.run/posix | bash
-
-##################################### code-server #####################################
-
-COPY code-server /tmp/code-server
-
-RUN mv /tmp/code-server $HOME/data
-
-RUN export PATH=/app/code-server/bin:$PATH && \
-    code-server --user-data-dir /config/data --extensions-dir /config/extensions --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
-    code-server --user-data-dir /config/data --extensions-dir /config/extensions --install-extension kilocode.kilo-code && \
-    . $HOME/data/languagepacks-linuxserver.sh
-
 
 ########################################### zerobrew ###########################################
 
-RUN curl -fsSL https://zerobrew.rs/install | sed 's/github\.com/g.stevie.top\/github.com/g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
+RUN curl -fsSL https://zerobrew.rs/install | sed 's|github.com|gh.g.stevie.top/github.com|g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
+
 
 ############################################ mise ##############################################
 
@@ -43,18 +29,25 @@ RUN curl https://mise.run | sh && \
 
 ##################################### starship #####################################
 
-RUN curl -sS https://starship.rs/install.sh | sh -s -- -y && \
+RUN curl -sS https://starship.rs/install.sh | sed 's|github.com|gh.g.stevie.top/github.com|g' | sh -s -- -y && \
     mkdir -p ~/.config && echo "\"\$schema\" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
 
 
-##################################### user & pasword #####################################
+##################################### code-server #####################################
 
-RUN echo 'abc:abc' | chpasswd && \
-    echo 'root:root' | chpasswd && \
-    echo 'abc ALL=(ALL) ALL' >> /etc/sudoers
+COPY --chown=coder:coder code-server /home/coder/.local/share/code-server
 
-ARG USER_ID=1000
-ARG GROUP_ID=1000
+RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
+    . $HOME/.local/share/code-server/languagepacks-coder.sh
 
-EXPOSE 8443
+COPY --chown=coder:coder mcp_settings.json /home/coder/.local/share/code-server/User/globalStorage/kilocode.kilo-code/settings/mcp_settings.json
+RUN code-server --install-extension kilocode.kilo-code
+
+
+WORKDIR /workspace
+
+CMD ["--auth=none"]
+
+
+# podman run --rm -it -p 8080:8080 ccs
