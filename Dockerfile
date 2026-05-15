@@ -50,10 +50,10 @@ RUN curl -sS https://starship.rs/install.sh | sh -s -- -y && \
 
 ##################################### user & pasword #####################################
 
-USER abc
-
 RUN echo 'abc:abc' | chpasswd && \
     echo 'root:root' | chpasswd && \
     echo 'abc ALL=(ALL) ALL' >> /etc/sudoers
+
+USER 1000
 
 EXPOSE 8443
