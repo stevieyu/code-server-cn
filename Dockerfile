@@ -50,15 +50,10 @@ RUN curl -sS https://starship.rs/install.sh | sh -s -- -y && \
 
 ##################################### user & pasword #####################################
 
-ARG USER_ID=1000
-ARG GROUP_ID=1000
+USER abc
 
 RUN echo 'abc:abc' | chpasswd && \
     echo 'root:root' | chpasswd && \
     echo 'abc ALL=(ALL) ALL' >> /etc/sudoers
-
-RUN groupmod -g ${GROUP_ID} abc && \
-    usermod -u ${USER_ID} -g ${GROUP_ID} abc && \
-    chown -R abc:abc /config /home/abc
 
 EXPOSE 8443
