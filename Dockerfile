@@ -54,6 +54,7 @@ RUN echo 'abc:abc' | chpasswd && \
     echo 'root:root' | chpasswd && \
     echo 'abc ALL=(ALL) ALL' >> /etc/sudoers
 
-USER 1000
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 
 EXPOSE 8443
