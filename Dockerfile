@@ -28,7 +28,7 @@ RUN mv /tmp/code-server $HOME/data
 RUN export PATH=/app/code-server/bin:$PATH && \
     code-server --user-data-dir /config/data --extensions-dir /config/extensions --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
     code-server --user-data-dir /config/data --extensions-dir /config/extensions --install-extension kilocode.kilo-code && \
-    . $HOME/data/languagepacks.sh
+    . $HOME/data/languagepacks-linuxserver.sh
 
 
 ########################################### zerobrew ###########################################
