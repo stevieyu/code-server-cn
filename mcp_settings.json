@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "streamable-http",
+      "url": "https://mcp.context7.com/mcp",
+      "alwaysAllow": ["resolve-library-id", "query-docs"]
+    },
+    "parallel-search": {
+      "type": "streamable-http",
+      "url": "https://search.parallel.ai/mcp",
+      "alwaysAllow": ["web_search", "web_fetch"]
+    }
+  }
+}
