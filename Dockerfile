@@ -18,7 +18,7 @@ RUN cp /etc/skel/.bashrc $HOME/.bashrc && \
 
 ########################################### zerobrew ###########################################
 
-RUN curl -fsSL https://zerobrew.rs/install | sed 's|github.com|gh.g.stevie.top/github.com|g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
+RUN curl -fsSL https://zerobrew.rs/install | sed 's|github.com|gh-proxy.stvcf.ggff.net/github.com|g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
 
 
 ############################################ mise ##############################################
@@ -28,8 +28,8 @@ RUN curl https://mise.run | sh && \
 
 
 ##################################### starship #####################################
-# sed 's|//github.com|//gh-proxy.stvcf.ggff.net/github.com|g'
-RUN curl -sS https://starship.rs/install.sh | sed 's|//github.com|//gh.g.stevie.top/github.com|g' | sh -s -- -y && \
+
+RUN curl -sS https://starship.rs/install.sh | sed 's|//github.com|//gh-proxy.stvcf.ggff.net/github.com|g' | sh -s -- -y && \
     mkdir -p ~/.config && echo "\"\$schema\" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
 
@@ -43,7 +43,7 @@ RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
 
 ############################# rtk ##########################################
 
-RUN curl -kfsSL https://gh.g.stevie.top/raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sed 's|//github.com|//gh.g.stevie.top/github.com|g' | sh
+RUN curl -kfsSL https://gh-proxy.stvcf.ggff.net/raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sed 's|//github.com|//gh-proxy.stvcf.ggff.net/github.com|g' | sh
 
 ######################## kilocode ##########################################
 
