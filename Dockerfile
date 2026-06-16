@@ -28,8 +28,8 @@ RUN curl https://mise.run | sh && \
 
 
 ##################################### starship #####################################
-# sed 's|github.com|gh-proxy.stvcf.ggff.net/github.com|g'
-RUN curl -sS https://starship.rs/install.sh | sed 's|github.com|gh.g.stevie.top/github.com|g' | sh -s -- -y && \
+# sed 's|//github.com|//gh-proxy.stvcf.ggff.net/github.com|g'
+RUN curl -sS https://starship.rs/install.sh | sed 's|//github.com|//gh.g.stevie.top/github.com|g' | sh -s -- -y && \
     mkdir -p ~/.config && echo "\"\$schema\" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
 
@@ -41,7 +41,13 @@ COPY --chown=coder:coder code-server /home/coder/.local/share/code-server
 RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
     . $HOME/.local/share/code-server/languagepacks-coder.sh
 
-COPY --chown=coder:coder mcp_settings.json /home/coder/.local/share/code-server/User/globalStorage/kilocode.kilo-code/settings/mcp_settings.json
+############################# rtk ##########################################
+
+RUN curl -kfsSL https://gh.g.stevie.top/raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sed 's|github.com|gh.g.stevie.top/github.com|g' | sh
+
+######################## kilocode ##########################################
+
+COPY --chown=coder:coder .kilo /home/coder/.config/kilo
 RUN code-server --install-extension kilocode.kilo-code
 
 

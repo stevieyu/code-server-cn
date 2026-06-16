@@ -1,5 +1,9 @@
 {
   "workbench.colorTheme": "Dark 2026",
   "window.menuBarVisibility": "classic",
-  "security.workspace.trust.enabled": false
+  "security.workspace.trust.enabled": false,
+  "json.schemaDownload.trustedDomains": {
+    "https://app.kilo.ai/config.json": true,
+    "https://models.dev/model-schema.json": true
+  }
 }
