@@ -3,11 +3,11 @@
 ```sh
 docker pull ghcr.io/stevieyu/code-server-cn
 
-docker run -d -p 8443:8443 -v ${PWD}:/config/workspace ghcr.io/stevieyu/code-server-cn
+docker run -d -p 8080:8080 -v ${PWD}:/config/workspace ghcr.io/stevieyu/code-server-cn
 
 mise use --global node@22 go@1
 
-podman run --rm -it -p 8443:8443 -v $env:USERPROFILE/.ssh:/config/.ssh ghcr.io/stevieyu/code-server-cn
+podman run --rm -it -p 8080:8080 -v $env:USERPROFILE/.ssh:/config/.ssh ghcr.io/stevieyu/code-server-cn
 
 docker run --rm -it -p 8080:8080 -v $env:USERPROFILE/.ssh:/home/coder/.ssh ghcr.io/coder/code-server --auth=none
 ```
