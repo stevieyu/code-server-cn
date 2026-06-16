@@ -28,7 +28,7 @@ RUN curl https://mise.run | sh && \
 
 
 ##################################### starship #####################################
-
+# sed 's|github.com|gh-proxy.stvcf.ggff.net/github.com|g'
 RUN curl -sS https://starship.rs/install.sh | sed 's|github.com|gh.g.stevie.top/github.com|g' | sh -s -- -y && \
     mkdir -p ~/.config && echo "\"\$schema\" = 'https://starship.rs/config-schema.json'" >> ~/.config/starship.toml && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc.d/00-starship.bashrc
