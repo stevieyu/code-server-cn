@@ -34,4 +34,9 @@
     "/home/coder/.config/kilo/rules/rtk.md",
     "/home/coder/.config/kilo/rules/ponytail.md",
   ],
+  "agent": {
+    "orchestrator": {
+      "disable": true,
+    },
+  },
 }
