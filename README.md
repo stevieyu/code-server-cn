@@ -1,7 +1,7 @@
 # code-server-cn
 
 ```sh
-apt install -y build-essential
+sudo apt update && sudo apt install -y build-essential
 
 docker pull ghcr.io/stevieyu/code-server-cn
 
