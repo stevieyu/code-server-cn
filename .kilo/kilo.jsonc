@@ -30,4 +30,8 @@
     "batch_tool": true,
     "openTelemetry": true,
   },
+  "instructions": [
+    "/home/coder/.config/kilo/rules/rtk.md",
+    "/home/coder/.config/kilo/rules/ponytail.md",
+  ],
 }

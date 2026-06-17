@@ -1,13 +1,15 @@
 # code-server-cn
 
 ```sh
+apt install -y build-essential
+
 docker pull ghcr.io/stevieyu/code-server-cn
 
 docker run -d -p 8080:8080 -v ${PWD}:/config/workspace ghcr.io/stevieyu/code-server-cn
 
-mise use --global node@22 go@1
+mise use --global node@24 go@1 rust
 
-podman run --rm -it -p 8080:8080 -v $env:USERPROFILE/.ssh:/config/.ssh ghcr.io/stevieyu/code-server-cn
+podman run --rm -it -p 8080:8080 -v $env:USERPROFILE/.ssh:/home/coder/.ssh ghcr.io/stevieyu/code-server-cn
 
 docker run --rm -it -p 8080:8080 -v $env:USERPROFILE/.ssh:/home/coder/.ssh ghcr.io/coder/code-server --auth=none
 ```
@@ -18,7 +20,7 @@ docker run --rm -it -p 8080:8080 -v $env:USERPROFILE/.ssh:/home/coder/.ssh ghcr.
 # mise.toml
 
 [tools]
-node = "22"
+node = "24"
 
 [env]
 TF_WORKSPACE = "development"
