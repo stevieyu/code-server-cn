@@ -43,7 +43,7 @@ RUN code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
 
 ############################# rtk ##########################################
 
-RUN curl -kfsSL https://gh-proxy.stvcf.ggff.net/raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sed 's|//github.com|//gh-proxy.stvcf.ggff.net/github.com|g' | sh
+RUN curl -kfsSL https://fastly.jsdelivr.net/gh/rtk-ai/rtk@develop/install.sh | sed 's|//github.com|//gh-proxy.stvcf.ggff.net/github.com|g' | sh
 
 ######################## kilocode ##########################################
 
