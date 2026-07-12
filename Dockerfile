@@ -22,7 +22,7 @@ RUN cp /etc/skel/.bashrc $HOME/.bashrc && \
 
 ########################################### zerobrew ###########################################
 
-RUN curl -fsSL https://zerobrew.rs/install | sed 's|github.com|gh-proxy.stvcf.ggff.net/github.com|g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
+RUN curl -fsSL https://zerobrew.rs/install | sed 's|/github|/gh-proxy.stvcf.ggff.net/github|g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
 
 
 ############################################ mise ##############################################
