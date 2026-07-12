@@ -16,6 +16,10 @@ COPY --chown=coder:coder .bashrc.d /home/coder/.bashrc.d
 RUN cp /etc/skel/.bashrc $HOME/.bashrc && \
     echo '. ~/.bashrc.d/.bashrc' >> $HOME/.bashrc
 
+########################################### brew ###########################################
+
+# RUN touch /.dockerenv && curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+
 ########################################### zerobrew ###########################################
 
 RUN curl -fsSL https://zerobrew.rs/install | sed 's|github.com|gh-proxy.stvcf.ggff.net/github.com|g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
