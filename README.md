@@ -1,7 +1,7 @@
 # code-server-cn
 
 ```sh
-sudo apt update && sudo apt install -y build-essential
+sudo apt update && sudo apt install -y build-essential pkg-config libssl-dev
 
 docker pull ghcr.io/stevieyu/code-server-cn
 
