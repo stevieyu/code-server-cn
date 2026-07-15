@@ -18,11 +18,11 @@ RUN cp /etc/skel/.bashrc $HOME/.bashrc && \
 
 ########################################### brew ###########################################
 
-# RUN touch /.dockerenv && curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+RUN touch /.dockerenv && curl -fsSL https://fastly.jsdelivr.net/gh/Homebrew/install@main/install.sh | sed 's|/github|/gh-proxy.stvcf.ggff.net/github|g' | bash
 
 ########################################### zerobrew ###########################################
 
-RUN curl -fsSL https://zerobrew.rs/install | sed 's|/github|/gh-proxy.stvcf.ggff.net/github|g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
+# RUN curl -fsSL https://zerobrew.rs/install | sed 's|/github|/gh-proxy.stvcf.ggff.net/github|g' | sed 's/$EUID -eq 0/$EUID -eq 1/g' | bash
 
 
 ############################################ mise ##############################################
