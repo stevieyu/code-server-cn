@@ -5,10 +5,13 @@ PATHS_TO_ADD=(
   "$HOME/.local/bin"
   "$HOME/.local/share/zerobrew/prefix/bin"
 )
+new_path=""
 for path in "${PATHS_TO_ADD[@]}"; do
-  [[ ":$PATH:" != *":$path:"* ]] && export PATH="$path:$PATH"
+  [[ ":$PATH:" != *":$path:"* ]] && new_path="${new_path}${path}:"
 done
-
+[[ -n "$new_path" ]] && export PATH="${new_path}${PATH}"
+unset new_path
+unset path
 
 # 遍历 .bashrc.d 目录下的配置文件并加载
 # 文件命名格式：[0-9][0-9]-*.bashrc（数字前缀用于控制加载顺序）
