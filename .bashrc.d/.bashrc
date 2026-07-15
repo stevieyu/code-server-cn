@@ -1,6 +1,7 @@
 # 批量添加路径到 PATH 变量
 # 防止重复添加已存在的路径
 PATHS_TO_ADD=(
+  "$HOME/.cargo/bin"
   "$HOME/.local/bin"
   "$HOME/.local/share/zerobrew/prefix/bin"
 )
