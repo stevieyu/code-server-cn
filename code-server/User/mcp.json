@@ -1,0 +1,21 @@
+{
+  "servers": {
+    "anysearch": {
+      "url": "https://api.anysearch.com/mcp",
+      "type": "http"
+    },
+    "Context7": {
+      "url": "https://mcp.api-inference.modelscope.net/ac9c969263984a/mcp",
+      "type": "http"
+    },
+    "exa": {
+      "url": "https://mcp.exa.ai/mcp",
+      "type": "http"
+    },
+    "parallel": {
+      "url": "https://search.parallel.ai/mcp",
+      "type": "http"
+    }
+  },
+  "inputs": []
+}

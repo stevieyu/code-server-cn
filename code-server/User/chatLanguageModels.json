@@ -1,0 +1,37 @@
+[
+  {
+    "name": "sensenova",
+    "vendor": "customendpoint",
+    "apiKey": "${input:chat.lm.secret.-46cc6ed}",
+    "apiType": "chat-completions",
+    "models": [
+      {
+        "id": "sensenova-6.7-flash-lite",
+        "name": "sensenova-6.7-flash-lite",
+        "url": "https://token.sensenova.cn/v1",
+        "toolCalling": true,
+        "vision": true,
+        "maxInputTokens": 256000,
+        "maxOutputTokens": 65535
+      },
+      {
+        "id": "deepseek-v4-flash",
+        "name": "deepseek-v4-flash",
+        "url": "https://token.sensenova.cn/v1",
+        "toolCalling": true,
+        "vision": false,
+        "maxInputTokens": 512000,
+        "maxOutputTokens": 65535
+      },
+      {
+        "id": "glm-5.2",
+        "name": "glm-5.2",
+        "url": "https://token.sensenova.cn/v1",
+        "toolCalling": true,
+        "vision": true,
+        "maxInputTokens": 512000,
+        "maxOutputTokens": 65535
+      }
+    ]
+  }
+]
