@@ -2,3 +2,8 @@
 
 [settings.node]
 mirror_url = "https://npmmirror.com/mirrors/node"
+
+
+[settings.status]
+show_env = true
+show_tools = true
