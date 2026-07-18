@@ -1,2 +1,4 @@
 #:schema https://fastly.jsdelivr.net/gh/jdx/mise@main/schema/mise.json
-min_version = "2024.1.1"
+
+[settings.node]
+mirror_url = "https://npmmirror.com/mirrors/node"

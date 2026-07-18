@@ -29,7 +29,7 @@ RUN touch /.dockerenv && curl -fsSL https://fastly.jsdelivr.net/gh/Homebrew/inst
 
 RUN curl https://mise.run | sh && \
     echo 'eval "$(mise activate bash --shims)"' >> ~/.bashrc.d/00-mise.bashrc
-COPY --chown=coder:coder .mise /home/coder/.mise
+COPY --chown=coder:coder .mise /home/coder/.config/mise
 
 
 ##################################### starship #####################################
