@@ -2,3 +2,6 @@
 
 [settings.node]
 mirror_url = "https://npmmirror.com/mirrors/node"
+
+[env]
+NPM_REGISTRY ="https://registry.npmmirror.com"
