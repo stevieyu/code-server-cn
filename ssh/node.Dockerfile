@@ -22,8 +22,11 @@ ENV NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
 # ============================================================
 # 安装 openssh-server
 # ============================================================
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
+        tini \
         openssh-server \
+        curl \
+        git \
     && rm -rf /var/lib/apt/lists/*
 
 # ============================================================
@@ -50,6 +53,7 @@ RUN sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
 
 EXPOSE 22
 
+ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["/usr/sbin/sshd", "-D"]
 
 # wslc build -t node:ssh -f node.Dockerfile .

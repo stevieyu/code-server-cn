@@ -18,7 +18,7 @@ RUN cp /etc/skel/.bashrc $HOME/.bashrc && \
 
 ########################################### brew ###########################################
 
-RUN touch /.dockerenv && curl -fsSL https://fastly.jsdelivr.net/gh/Homebrew/install@main/install.sh | sed 's|/github|/gh-proxy.stvcf.ggff.net/github|g' | bash
+RUN touch /.dockerenv && curl -fsSL https://fastly.jsdelivr.net/gh/Homebrew/install@main/install.sh | sed 's|//github|//gh-proxy.stvcf.ggff.net/github|g' | bash
 
 ########################################### zerobrew ###########################################
 
@@ -27,7 +27,7 @@ RUN touch /.dockerenv && curl -fsSL https://fastly.jsdelivr.net/gh/Homebrew/inst
 
 ############################################ mise ##############################################
 
-RUN curl https://mise.run | sh && \
+RUN curl https://mise.run | sed 's|//github|//gh-proxy.stvcf.ggff.net/github|g' | sh && \
     echo 'eval "$(mise activate bash --shims)"' >> ~/.bashrc.d/00-mise.bashrc
 COPY --chown=coder:coder .mise /home/coder/.config/mise
 
