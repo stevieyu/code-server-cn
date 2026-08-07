@@ -2,25 +2,18 @@ FROM docker.1panel.live/library/node:lts-slim
 
 # ============================================================
 # 配置 Debian apt 国内镜像源，这里使用阿里云
-# 如果想用清华源，可以把 mirrors.aliyun.com 替换为：
-# mirrors.tuna.tsinghua.edu.cn
+# 阿里源：mirrors.aliyun.com
+# 清华源：mirrors.tuna.tsinghua.edu.cn
 # ============================================================
-RUN set -eux; \
-    if [ -f /etc/apt/sources.list.d/debian.sources ]; then \
-        sed -i 's|deb.debian.org|mirrors.aliyun.com|g; s|security.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources; \
-    fi; \
-    if [ -f /etc/apt/sources.list ]; then \
-        sed -i 's|deb.debian.org|mirrors.aliyun.com|g; s|security.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list; \
-    fi
+RUN find /etc -regex '.*\(repositories\|sources.list\(.d\/.*\)?\)$' | xargs sed -i -E 's/(archive|security).ubuntu.com|(deb).debian.org|dl-cdn.alpinelinux.org/mirrors.aliyun.com/g'
 
 # ============================================================
-# 可选：配置 npm 国内镜像源
-# 如果不需要 npm 国内源，可以删除这一行
+# 配置 npm 国内镜像源
 # ============================================================
 RUN npm config set registry https://registry.npmmirror.com
 
 # ============================================================
-# 安装 openssh-server
+# 安装相关环境
 # ============================================================
 RUN apt-get update && apt-get install -y \
         tini \
