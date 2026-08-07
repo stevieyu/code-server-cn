@@ -51,6 +51,8 @@ RUN sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -i 's/^#\?PermitEmptyPasswords.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config \
     && sed -i 's/^#\?UsePAM.*/UsePAM yes/' /etc/ssh/sshd_config
 
+WORKDIR /workdir
+
 EXPOSE 22
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
