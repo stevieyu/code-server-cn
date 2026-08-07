@@ -17,7 +17,7 @@ RUN set -eux; \
 # 可选：配置 npm 国内镜像源
 # 如果不需要 npm 国内源，可以删除这一行
 # ============================================================
-ENV NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
+RUN npm config set registry https://registry.npmmirror.com
 
 # ============================================================
 # 安装 openssh-server
@@ -57,4 +57,4 @@ ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["/usr/sbin/sshd", "-D"]
 
 # wslc build -t node:ssh -f node.Dockerfile .
-# wslc run --rm -it -p 8022:22 -p 8080:8080 node:ssh
+# wslc run --rm -it -p 8022:22 -p 8080:8080 -v ~:/root/.ssh node:ssh
