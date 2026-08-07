@@ -57,4 +57,4 @@ ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["/usr/sbin/sshd", "-D"]
 
 # wslc build -t node:ssh -f node.Dockerfile .
-# wslc run --rm -it -p 8022:22 -p 8080:8080 -v ~:/root/.ssh node:ssh
+# wslc run --rm -it -p 8022:22 -p 8080:8080 -v ${HOME}/.ssh:/root/.ssh node:ssh
