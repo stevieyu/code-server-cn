@@ -24,22 +24,17 @@ RUN apt-get update && apt-get install -y \
 
 # ============================================================
 # 创建 sshd 运行目录并生成主机密钥
-# ============================================================
-RUN mkdir -p /run/sshd \
-    && ssh-keygen -A
-
-# ============================================================
+#
 # 清空 root 密码，实现无密码登录
-# ============================================================
-RUN passwd -d root
-
-# ============================================================
-# 配置 SSH：
+#
 # 允许 root 登录
 # 允许密码登录
 # 允许空密码登录
 # ============================================================
-RUN sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
+RUN mkdir -p /run/sshd \
+    && ssh-keygen -A && \
+    passwd -d root && \
+    sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config \
     && sed -i 's/^#\?PermitEmptyPasswords.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config \
     && sed -i 's/^#\?UsePAM.*/UsePAM yes/' /etc/ssh/sshd_config
