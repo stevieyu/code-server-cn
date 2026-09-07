@@ -1,4 +1,4 @@
-FROM docker.1panel.live/library/node:lts-slim
+FROM docker.1ms.run/library/ubuntu
 
 # ============================================================
 # 配置 Debian apt 国内镜像源，这里使用阿里云
@@ -6,14 +6,6 @@ FROM docker.1panel.live/library/node:lts-slim
 # 清华源：mirrors.tuna.tsinghua.edu.cn
 # ============================================================
 RUN find /etc -regex '.*\(repositories\|sources.list\(.d\/.*\)?\)$' | xargs sed -i -E 's/(archive|security).ubuntu.com|(deb).debian.org|dl-cdn.alpinelinux.org/mirrors.aliyun.com/g'
-
-# ============================================================
-# 配置 npm 国内镜像源
-# ============================================================
-# RUN npm config set -g registry https://registry.npmmirror.com
-RUN npm config set -g registry https://mirrors.cloud.tencent.com/npm/
-# RUN npm config set -g registry https://repo.huaweicloud.com/repository/npm/
-# RUN npm config set -g registry https://r.cnpmjs.org
 
 
 # ============================================================
@@ -25,6 +17,7 @@ RUN apt-get update && apt-get install -y \
         curl \
         git \
     && rm -rf /var/lib/apt/lists/*
+
 
 # ============================================================
 # 创建 sshd 运行目录并生成主机密钥
@@ -43,6 +36,7 @@ RUN mkdir -p /run/sshd \
     && sed -i 's/^#\?PermitEmptyPasswords.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config \
     && sed -i 's/^#\?UsePAM.*/UsePAM yes/' /etc/ssh/sshd_config
 
+
 WORKDIR /workdir
 
 EXPOSE 22
@@ -50,5 +44,6 @@ EXPOSE 22
 ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["/usr/sbin/sshd", "-D"]
 
-# wslc build -t node:ssh -f node.Dockerfile .
-# wslc run --rm -it -p 8022:22 -p 8080:8080 -v ${HOME}/.ssh:/root/.ssh node:ssh
+
+# wslc build -t ubuntu:ssh -f ubuntu.Dockerfile .
+# wslc run --rm -it -p 8022:22 -p 8080:8080 -v ${HOME}/.ssh:/root/.ssh ubuntu:ssh
